@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.holonet.sqlite;
+import controlador.HoloNetControl;
 
 /**
  *
@@ -11,6 +12,9 @@ package com.mycompany.holonet.sqlite;
 public class HolonetSQLite {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        HoloNetControl control = new HoloNetControl();
+        System.out.println("Sistema HoloNet inicializado correctamente.");
+        
+        HoloNetControl.getSessionFactory().close();
     }
 }

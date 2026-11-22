@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="holonet.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1640"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="cazas_ligeros" custom_title="0" dock_id="1" table="4,13:maincazas_ligeros"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011300ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">PRAGMA foreign_keys = OFF;
+DROP TABLE IF EXISTS destructores_estelares;
+DROP TABLE IF EXISTS cazas_ligeros;
+DROP TABLE IF EXISTS naves;
+DROP TABLE IF EXISTS planetas;
+PRAGMA foreign_keys = ON;
+CREATE TABLE planetas (
+    planeta_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL UNIQUE,
+    clima TEXT,
+    afiliacion TEXT DEFAULT 'Neutral'
+);
+CREATE TABLE naves (
+    nave_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    modelo TEXT NOT NULL,
+    estado_sistema TEXT NOT NULL,
+    planeta_origen_id INTEGER,
+    FOREIGN KEY (planeta_origen_id) REFERENCES planetas(planeta_id) ON DELETE SET NULL
+);
+CREATE TABLE cazas_ligeros (
+    caza_id INTEGER PRIMARY KEY,
+    potencia_fuego INTEGER NOT NULL,
+    FOREIGN KEY (caza_id) REFERENCES naves(nave_id) ON DELETE CASCADE
+);
+CREATE TABLE destructores_estelares (
+    destructor_id INTEGER PRIMARY KEY,
+    capacidad_escudos INTEGER NOT NULL,
+    FOREIGN KEY (destructor_id) REFERENCES naves(nave_id) ON DELETE CASCADE
+);
+INSERT INTO planetas (planeta_id, nombre, clima, afiliacion) VALUES
+(1, 'Coruscant', 'Templado', 'Imperio'),
+(2, 'Yavin IV', 'Jungla', 'Alianza Rebelde'),
+(3, 'Tatooine', 'Árido', 'Neutral');
+INSERT INTO naves (nave_id, nombre, modelo, estado_sistema, planeta_origen_id) VALUES
+(1, 'Caza X-Wing', 'T-65B', 'Estable', 2),
+(2, 'Destructor Estelar', 'Clase Imperial I', 'Estable', 1),
+(3, 'Superdestructor Ejecutor', 'Clase Ejecutor', 'Critico', 1),
+(4, 'Caza TIE Alfa', 'TIE/ln', 'Critico', 1),
+(5, 'Halcón Milenario', 'YT-1300', 'Mantenimiento', 3);
+INSERT INTO cazas_ligeros (caza_id, potencia_fuego) VALUES
+(1, 85),
+(4, 40),
+(5, 120);
+INSERT INTO destructores_estelares (destructor_id, capacidad_escudos) VALUES
+(2, 9500),
+(3, 45000);</sql><current_tab id="0"/></tab_sql></sqlb_project>
