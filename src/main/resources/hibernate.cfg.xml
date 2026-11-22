@@ -12,7 +12,10 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 
-        <!-- Mapeo de tus clases entidad (añade aquí tus clases con @Entity) -->
-        <mapping class=""/>
+        <!-- Mapeo de clases entidad -->
+        <mapping class="ut4.sqlite.modelo.Planeta"/>
+        <mapping class="ut4.sqlite.modelo.Nave"/>
+        <mapping class="ut4.sqlite.modelo.CazaLigero"/>
+        <mapping class="ut4.sqlite.modelo.DestructorEstelar"/>
     </session-factory>
 </hibernate-configuration>
