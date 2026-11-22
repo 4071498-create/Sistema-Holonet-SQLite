@@ -10,4 +10,21 @@
         <maven.compiler.release>25</maven.compiler.release>
         <exec.mainClass>com.mycompany.holonet.sqlite.HolonetSQLite</exec.mainClass>
     </properties>
+    <dependencies>
+    <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>6.4.4.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-community-dialects</artifactId>
+        <version>6.4.4.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.45.3.0</version>
+    </dependency>
+</dependencies>
 </project>
